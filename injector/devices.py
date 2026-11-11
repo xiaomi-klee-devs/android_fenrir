@@ -947,8 +947,15 @@ DEVICES = [
                 match_mode=MatchMode.ALL,
                 description='Skip security error branch - always execute commands',
             ),
+            'kill_ufshcd_blacklist': PatchStage(
+                'kill_ufshcd_blacklist',
+                pattern='69 6e 69 74 63 61 6c 6c 5f 62 6c 61 63 6b 6c 69 73 74 3d 75 66 73 68 63 64 5f 63 6f 72 65 5f 69 6e 69 74',
+                replacement='69 6e 69 74 63 61 6c 6c 5f 62 6c 61 63 6b 6c 69 73 74 3d 75 66 73 68 63 64 5f 63 6f 72 65 5f 69 6e 69 58',
+                match_mode=MatchMode.ALL,
+                description='Neutralize LK initcall_blacklist=ufshcd_core_init',
+            ),
         },
-        cert_bypass=True,
+        cert_bypass=CertBypass.OVERRIDE,
     ),
     Device(
         'chagall',
